@@ -1,4 +1,5 @@
-// O projeto independente só oferece a campanha em /blacknovember.
-// Na integração, preservar integralmente a página inicial do aplicativo oficial.
-import { notFound } from 'next/navigation';
-export default function Home() { notFound(); }
+import { redirect } from "next/navigation";
+
+export default function Home() {
+  redirect("/blacknovember");
+}

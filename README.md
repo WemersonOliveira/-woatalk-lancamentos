@@ -484,3 +484,8 @@ O histórico Git não substitui o backup do banco de dados Supabase.
 8. O carregamento visual completo deve ser testado, não apenas a resposta HTML.
 
 **Princípio operacional: antes de alterar qualquer arquivo, identifique a aplicação responsável, o repositório correto e o projeto Vercel correspondente.**
+
+
+## Superaulas integradas
+
+A aplicação WOA Exclusive — Superaulas está incorporada no mesmo projeto Next.js em `/blacknovember/superaulas`. Consulte `INTEGRACAO-SUPERAULAS.md` para rotas, variáveis de ambiente e publicação. O antigo deploy externo não é mais necessário.

@@ -7,9 +7,8 @@ const read = p => readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 test('somente a árvore /blacknovember expõe a campanha', () => {
   assert.deepEqual(readdirSync(new URL('../src/app/', import.meta.url)).sort(),
     ['blacknovember', 'layout.tsx', 'page.tsx']);
-  assert.doesNotMatch(read('src/app/page.tsx'), /redirect\s*\(/);
-  assert.match(read('src/app/page.tsx'), /notFound\(\)/);
-  assert.doesNotMatch(read('src/app/page.tsx'), /import.*blacknovember/);
+  assert.ok(read('src/app/page.tsx').includes('redirect("/blacknovember")'));
+  assert.match(read('src/app/blacknovember/superaulas/page.tsx'), /As 4/);
   assert.doesNotMatch(read('src/app/layout.tsx'), /metadata|canonical|globals\.css/);
   const form = read('src/app/blacknovember/_components/LeadCaptureForm.tsx');
   assert.match(form, /fetch\("\/blacknovember\/api\/leads"/);
