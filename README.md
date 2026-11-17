@@ -1,472 +1,395 @@
-# WOA Exclusive — Black November 2026
+# WOA Talk — Lançamentos | Black November
 
-Aplicação independente das Super Aulas da WOA Talk, desenvolvida em Next.js App Router, React e TypeScript.
-
-Este repositório contém exclusivamente o código-fonte da aplicação Super Aulas. A publicação é feita em um projeto próprio da Vercel, separado do projeto principal de Lançamentos.
-
----
+Repositório responsável pelo site principal da WOA Talk, pela landing page Black November e pela integração de acesso à aplicação independente Super Aulas.
 
 ## 1. Identificação do projeto
 
 | Item | Informação |
 |---|---|
-| Aplicação | WOA Exclusive — Black November 2026 |
-| Projeto Vercel | `woatalk-superaulas` |
-| Repositório GitHub | `WemersonOliveira/woatalk-superaulas` |
+| Projeto Vercel | `woatalk-lancamentos` |
+| Repositório GitHub | `WemersonOliveira/-woatalk-lancamentos` |
 | Branch principal | `main` |
-| Framework | Next.js App Router |
-| Interface | React + TypeScript |
+| Domínio oficial | https://www.woatalk.com.br |
+| Landing page | https://www.woatalk.com.br/blacknovember |
+| Rota Super Aulas | https://www.woatalk.com.br/blacknovember/superaulas |
+| Framework | Next.js |
 | Banco de dados | Supabase |
 | Deploy | Vercel |
-| Rota oficial | `/blacknovember/superaulas` |
-| Base path independente | `/BlackNovember/superaulas` |
 
-**Repositório:**  
-https://github.com/WemersonOliveira/woatalk-superaulas
+**Atenção:** o nome do projeto na Vercel é `woatalk-lancamentos`, enquanto o nome do repositório GitHub começa com hífen: `-woatalk-lancamentos`.
 
 ---
 
 ## 2. Responsabilidade deste repositório
 
-Este repositório é responsável por toda a aplicação independente Super Aulas.
+Este repositório é responsável por:
 
-Inclui:
+- Site principal `www.woatalk.com.br`.
+- Landing page `/blacknovember`.
+- Formulários e captura de leads da campanha.
+- API de cadastro de leads.
+- Integrações próprias da campanha.
+- Configurações de domínio e encaminhamento de rotas.
+- Integração de acesso à aplicação Super Aulas.
 
-- Layout e identidade visual.
-- Componentes React.
-- Conteúdo das aulas.
-- Informações comerciais e planos.
-- Tabela de preços e lotes.
-- Links dos vídeos e materiais.
-- Integrações de checkout e WhatsApp.
-- Integração de formulário com Supabase.
-- Rotas e funcionalidades internas.
-- Configurações próprias de execução e build.
-- Prefixo de rota (`basePath`).
+**Não é responsável pelo código interno da aplicação Super Aulas.**
 
-**Este repositório NÃO é responsável pelo site principal da WOA Talk nem pela landing page principal Black November.**
-
-Essas aplicações pertencem ao projeto `woatalk-lancamentos`.
+O código das Super Aulas está em outro repositório, com projeto Vercel e configuração próprios.
 
 ---
 
-## 3. Organização dos dois projetos
+## 3. Arquitetura dos dois projetos
 
-A estrutura de produção utiliza dois projetos Vercel e dois repositórios GitHub independentes.
+A WOA Talk utiliza dois projetos independentes na Vercel e dois repositórios GitHub.
 
-| Responsabilidade | Projeto Vercel | Repositório GitHub |
+| Aplicação | Projeto Vercel | Repositório GitHub |
 |---|---|---|
-| Site principal e Black November | `woatalk-lancamentos` | `-woatalk-lancamentos` |
-| Aplicação Super Aulas | `woatalk-superaulas` | `woatalk-superaulas` |
+| Site e Black November | `woatalk-lancamentos` | `-woatalk-lancamentos` |
+| Super Aulas | `woatalk-superaulas` | `woatalk-superaulas` |
 
 ### Fluxo de acesso
 
 ```text
-www.woatalk.com.br
-        |
-        v
+https://www.woatalk.com.br
+          |
+          v
 Vercel: woatalk-lancamentos
-        |
-        |-- /
-        |   Site principal
-        |
-        |-- /blacknovember
-        |   Landing page da campanha
-        |
-        |-- /blacknovember/superaulas
-                |
-                v
-           Rewrite / Proxy
-                |
-                v
-           Vercel: woatalk-superaulas
-                |
-                v
-           Aplicação Super Aulas
+          |
+          |-- /
+          |    Site principal
+          |
+          |-- /blacknovember
+          |    Landing page Black November
+          |
+          |-- /blacknovember/superaulas
+                    |
+                    v
+              Rewrite / encaminhamento
+                    |
+                    v
+              Vercel: woatalk-superaulas
+                    |
+                    v
+              Aplicação Super Aulas
 ```
 
-### Regra fundamental
+### Projeto independente Super Aulas
 
-O código da aplicação Super Aulas deve ser alterado exclusivamente neste repositório.
+- Repositório: https://github.com/WemersonOliveira/woatalk-superaulas
+- Projeto Vercel: `woatalk-superaulas`
+- Rota oficial: `/blacknovember/superaulas`
 
-O encaminhamento da rota oficial pelo domínio principal é configurado no projeto `woatalk-lancamentos`, no repositório:
-
-https://github.com/WemersonOliveira/-woatalk-lancamentos
-
-Não misturar as configurações dos dois projetos.
+A aplicação possui configuração própria de rota e não deve ser confundida com a landing page principal.
 
 ---
 
-## 4. URLs e rotas
+## 4. Regra fundamental: onde alterar cada coisa
 
-### URL oficial
-
-```text
-https://www.woatalk.com.br/blacknovember/superaulas
-```
-
-### URL independente da Vercel
-
-```text
-https://woatalk-superaulas.vercel.app/BlackNovember/superaulas
-```
-
-A aplicação independente foi configurada para atender pelo caminho específico.
-
-Acessar somente a raiz do endereço `.vercel.app` pode retornar 404, pois a aplicação utiliza um `basePath`.
-
-### Diferença entre os caminhos
-
-| Ambiente | Caminho |
+| Alteração | Repositório correto |
 |---|---|
-| Domínio oficial | `/blacknovember/superaulas` |
-| Projeto independente | `/BlackNovember/superaulas` |
+| Site principal | `-woatalk-lancamentos` |
+| Landing page Black November | `-woatalk-lancamentos` |
+| Formulário de leads da campanha | `-woatalk-lancamentos` |
+| API `/api/leads` | `-woatalk-lancamentos` |
+| Integração Supabase da campanha | `-woatalk-lancamentos` |
+| Encaminhamento do domínio oficial | `-woatalk-lancamentos` |
+| `vercel.json` do domínio principal | `-woatalk-lancamentos` |
+| Layout das Super Aulas | `woatalk-superaulas` |
+| Componentes das Super Aulas | `woatalk-superaulas` |
+| Rotas internas das Super Aulas | `woatalk-superaulas` |
+| CSS e imagens das Super Aulas | `woatalk-superaulas` |
+| `basePath` das Super Aulas | `woatalk-superaulas` |
 
-**Atenção:** preservar a diferença entre letras maiúsculas e minúsculas nos caminhos configurados.
-
-Não alterar o `basePath` sem verificar o impacto nas rotas, nos bundles e nos arquivos estáticos.
-
----
-
-## 5. Estado atual da publicação e integração
-
-### Vercel — Super Aulas
-
-Projeto:
-
-```text
-woatalk-superaulas
-```
-
-O projeto independente possui deploy de produção registrado como Ready e configuração própria de variáveis de ambiente.
-
-A aplicação pode ser validada pelo endereço independente com o caminho completo:
-
-```text
-https://woatalk-superaulas.vercel.app/BlackNovember/superaulas
-```
-
-### Domínio oficial
-
-O acesso oficial é:
-
-```text
-https://www.woatalk.com.br/blacknovember/superaulas
-```
-
-O encaminhamento dessa rota é feito pelo projeto `woatalk-lancamentos`.
-
-### Pendência técnica registrada
-
-O encaminhamento da rota oficial foi configurado e o erro 404 foi resolvido.
-
-Entretanto, foi identificado um problema no carregamento dos arquivos estáticos da aplicação pelo domínio oficial.
-
-Os recursos que precisam ser verificados incluem:
-
-- CSS.
-- JavaScript.
-- Imagens.
-- Fontes.
-- Bundles do Next.js.
-- Arquivos em `/_next/static`.
-
-**Estado conhecido:**
-
-| Funcionalidade | Situação |
-|---|---|
-| Projeto independente na Vercel | Deploy Ready |
-| Código das Super Aulas | Repositório independente |
-| Acesso pela rota independente | Funcional |
-| Encaminhamento do domínio oficial | Configurado |
-| Erro 404 da rota oficial | Corrigido |
-| Layout completo pelo domínio oficial | Pendente de correção |
-| Carregamento de CSS e JavaScript no domínio oficial | Pendente de validação |
-
-Não considerar a integração concluída até que o domínio oficial apresente o mesmo layout e comportamento da aplicação independente.
+**Não editar os dois projetos para resolver um único problema sem antes identificar sua origem.**
 
 ---
 
-## 6. Desenvolvimento local
+## 5. Estrutura do projeto
+
+Estrutura observada no repositório:
+
+```text
+-woatalk-lancamentos/
+│
+├── .github/
+│   └── workflows/
+│
+├── public/
+│
+├── scripts/
+│
+├── src/
+│   └── app/
+│
+├── supabase/
+│   └── migrations/
+│
+├── tests/
+│
+├── .env.example
+├── .gitignore
+├── ATUALIZAR-DESIGN.md
+├── ENTREGA-OLIVER.md
+├── GUIA-COMPLETO.md
+├── INTEGRACAO-BLACKNOVEMBER.md
+├── README.md
+├── SUPABASE-SETUP.md
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+└── vercel.json
+```
+
+Consulte os documentos complementares antes de modificar funcionalidades já existentes.
+
+---
+
+## 6. Ambiente de desenvolvimento
 
 ### Requisitos
 
-- Node.js 22.13+ ou 24 LTS.
-- npm.
+- Node.js 24 LTS
+- npm
+- Git
+- Conta Supabase para configuração do banco
+- Conta Vercel para publicação
 
-### Instalar dependências
+### Instalação
 
 ```bash
 npm ci
 ```
 
-### Executar aplicação
+Copie o arquivo de exemplo:
+
+```bash
+cp .env.example .env.local
+```
+
+Configure as variáveis necessárias no `.env.local`.
+
+Execute o projeto:
 
 ```bash
 npm run dev
 ```
 
-Abra:
+Acesse:
 
 ```text
-http://localhost:3000/BlackNovember/superaulas
+http://localhost:3000
 ```
-
-### Validar aplicação
-
-```bash
-npm test
-npm run typecheck
-npm run build
-npm start
-```
-
-Utilize os comandos disponíveis no `package.json` e confira os resultados antes de publicar.
 
 ---
 
-## 7. Base path e configuração das rotas
+## 7. Supabase — Banco de dados e leads
 
-A aplicação preserva o prefixo original:
+Este projeto utiliza Supabase para armazenar os cadastros da campanha.
+
+### Migração SQL
+
+Arquivo de migração documentado:
 
 ```text
-/BlackNovember/superaulas
+supabase/migrations/202611030001_create_black_november_leads.sql
 ```
 
-A variável utilizada é:
+A migração cria a estrutura necessária para armazenar os leads da campanha.
+
+### Segurança
+
+- RLS habilitado.
+- Acesso direto de `anon` e `authenticated` à tabela de leads não é permitido conforme a configuração documentada.
+- As operações de cadastro são realizadas pelo servidor.
+- A chave secreta deve permanecer exclusivamente no servidor.
+
+### Variáveis do servidor
 
 ```env
-NEXT_PUBLIC_BASE_PATH=/BlackNovember/superaulas
+SUPABASE_URL=
+SUPABASE_SECRET_KEY=
 ```
 
-Para executar o build e o start explicitamente com esse prefixo:
+**Nunca utilizar `SUPABASE_SECRET_KEY` com prefixo `NEXT_PUBLIC_`.**
 
-```bash
-NEXT_PUBLIC_BASE_PATH=/BlackNovember/superaulas npm run build
+Não publicar chaves privadas no GitHub, no navegador ou em arquivos públicos.
 
-NEXT_PUBLIC_BASE_PATH=/BlackNovember/superaulas npm start
-```
-
-O Next.js aplica o prefixo às rotas e aos bundles da aplicação.
-
-Os recursos públicos também precisam respeitar os caminhos esperados para a publicação.
-
-### Atenção aos assets
-
-Ao investigar problemas de CSS, JavaScript, imagens ou arquivos estáticos:
-
-1. Conferir o `basePath` da aplicação.
-2. Conferir os caminhos gerados no build.
-3. Verificar as requisições em `/_next/static`.
-4. Verificar os caminhos de imagens e fontes.
-5. Comparar o funcionamento pela URL independente e pela URL oficial.
-6. Conferir o rewrite no projeto principal.
-
-**Não resolver problemas de assets alterando caminhos aleatoriamente.** Identificar primeiro se a origem está no build da Super Aulas ou no encaminhamento do domínio principal.
-
-### Hospedagem futura em domínio independente
-
-Caso a aplicação passe a utilizar a raiz de um domínio próprio, será necessário revisar o `NEXT_PUBLIC_BASE_PATH` antes do build e na configuração de produção.
-
-A variável vazia representa a publicação na raiz:
-
-```env
-NEXT_PUBLIC_BASE_PATH=
-```
-
-Essa configuração não deve ser aplicada na publicação atual sem uma decisão explícita de mudança de arquitetura.
-
----
-
-## 8. Conteúdo e integrações
-
-O arquivo:
-
-```text
-lib/campaign.ts
-```
-
-Concentra os dados tipados da campanha.
-
-Os 12 valores, quatro lotes, cinco benefícios, idiomas e textos das aulas vêm da referência utilizada no projeto.
-
-Os textos comerciais, valores, datas, condições, 12 links de aulas e contato foram fornecidos pelo usuário. Não foram recalculados juros ou parcelas.
-
-### Integrações principais
-
-**Vídeos**
-
-- `lessons[0].youtubeId`: ID oficial de 11 caracteres.
-- O vídeo carrega após interação do usuário.
-- Utiliza `youtube-nocookie.com`.
-- A Aula 01 utiliza o ID fornecido na referência.
-- As aulas 02 a 04 aguardam gravação.
-
-**PDFs**
-
-- `lessons[0].pdf`: caminho do arquivo em `public/`.
-- Downloads podem depender do `Content-Disposition` do servidor remoto.
-
-**Checkout**
-
-- `integrations.checkout`: contém 12 URLs oficiais.
-- Os links são organizados por planos e condições comerciais.
-- Somente URLs HTTPS sem credenciais são aceitas.
-
-**WhatsApp**
-
-- `integrations.whatsapp`: número oficial com DDI e DDD, armazenado apenas com dígitos.
-- A página não envia mensagens automaticamente.
-
-**Pagamento**
-
-- `integrations.payment`: link oficial Asaas para Pix com valor informado pelo cliente.
-- Não existe cobrança automática dentro da aplicação.
-- A equipe precisa confirmar o comprovante antes de confirmar a matrícula.
-
-**Artes e materiais**
-
-Os arquivos públicos e caminhos das imagens devem ser mantidos organizados em `public/`.
-
-Consulte a documentação de assets antes de substituir ou remover arquivos utilizados pela aplicação.
-
-### Dados comerciais e datas
-
-Os controles dependentes de valores reais ficam desabilitados e identificados quando não possuem configuração válida.
-
-A tabela apresenta os quatro lotes para comparação e habilita somente o lote vigente conforme a regra de novembro de 2026.
-
-A data é verificada no navegador após a hidratação e atualizada periodicamente, inclusive ao retornar à aba.
-
-As datas inicial e final são inclusivas.
-
-Fora do período, o CTA fica indisponível. O WhatsApp permanece acessível.
-
-A regra visual da aplicação não substitui a configuração de validade e preço no Asaas, nem garante a validade de um checkout externo.
-
----
-
-## 9. Componentes e acessibilidade
-
-A aplicação utiliza componentes reutilizáveis para organizar conteúdo, aulas, preços, matrícula e formulários.
-
-Entre os principais recursos:
-
-- Player de vídeo com carregamento após interação.
-- Componentes de matrícula.
-- Formulário de interessados.
-- Integração com API de leads.
-- Estrutura semântica.
-- Rótulos de controles.
-- Foco visível.
-- Link para pular diretamente ao conteúdo.
-- Suporte a movimento reduzido.
-- Cabeçalhos associados nas tabelas.
-
-### Formulário e Supabase
+### Funcionamento da captura
 
 A rota:
 
 ```text
-/api/leads
+POST /api/leads
 ```
 
-Integra o formulário com o Supabase.
+É responsável por:
 
-A página verifica no servidor se as variáveis necessárias estão disponíveis.
+- Validar os campos recebidos.
+- Registrar consentimento.
+- Armazenar informações de campanha e UTMs.
+- Verificar duplicidade conforme a implementação.
+- Registrar o cadastro no banco.
 
-As políticas RLS e as permissões do banco devem ser respeitadas.
-
-Não expor chaves administrativas ou secretas no navegador.
-
-### Responsividade
-
-A interface possui estilos para telas pequenas, intermediárias e grandes.
-
-No celular:
-
-- Cards ficam organizados em uma coluna.
-- A tabela permite rolagem horizontal.
-- Os controles devem permanecer acessíveis por teclado.
-
-O layout e o contraste ainda precisam de validação visual em navegadores reais após a correção da integração oficial.
+O formulário deve respeitar as validações e o fluxo de consentimento existentes.
 
 ---
 
-## 10. Variáveis de ambiente na Vercel
+## 8. Variáveis de ambiente na Vercel
 
-Na captura do projeto `woatalk-superaulas` aparecem estas quatro variáveis:
+Na captura de configuração do projeto `woatalk-lancamentos`, aparecem as seguintes variáveis:
 
-| Variável | Ambiente exibido |
+| Variável | Ambiente |
 |---|---|
+| `LEAD_CAPTURE_ENABLED` | Production e Preview |
 | `NEXT_PUBLIC_BASE_PATH` | Production e Preview |
 | `NEXT_PUBLIC_SUPABASE_URL` | Production e Preview |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Production e Preview |
-| `LEAD_CAPTURE_ENABLED` | Production e Preview |
+| `SUPABASE_SECRET_KEY` | Production |
+| `SUPABASE_URL` | Production |
+| `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | Production |
+| `NEXT_PUBLIC_PRIVACY_URL` | Production |
 
-Os valores devem ser consultados diretamente no painel do projeto Vercel.
+Os valores devem ser consultados diretamente no painel da Vercel.
 
-### Segurança
-
-- Nunca publicar chaves secretas no GitHub.
-- Não utilizar chaves administrativas no frontend.
-- Não compartilhar valores entre projetos sem verificar a configuração.
-- Não copiar variáveis do projeto `woatalk-lancamentos` automaticamente.
-- Manter `.env.example` sem credenciais reais.
+Não copiar variáveis ou valores do projeto Super Aulas sem verificar a necessidade.
 
 ---
 
-## 11. Estrutura do repositório
+## 9. Vercel — Deploy e domínio
 
-Estrutura observada:
+### Projeto responsável
 
 ```text
-woatalk-superaulas/
-│
-├── app/
-├── components/
-├── lib/
-├── public/
-├── supabase/
-├── tests/
-│
-├── .env.example
-├── .gitignore
-├── MIGRACAO.md
-├── MIGRATION-NOTES.md
-├── README.md
-├── README-DEV.md
-├── SUPABASE.md
-├── VISUALIZAR.md
-├── next.config.ts
-├── package.json
-├── package-lock.json
-└── tsconfig.json
+woatalk-lancamentos
 ```
 
-### Documentos complementares
+Este projeto está associado ao domínio:
 
-| Arquivo | Finalidade |
-|---|---|
-| `MIGRACAO.md` | Registro da migração |
-| `MIGRATION-NOTES.md` | Observações técnicas da migração |
-| `README-DEV.md` | Orientações de desenvolvimento |
-| `SUPABASE.md` | Configuração e integração do banco |
-| `VISUALIZAR.md` | Orientações para visualizar a aplicação |
-| `next.config.ts` | Configuração do Next.js |
-| `.env.example` | Exemplo de variáveis de ambiente |
+```text
+www.woatalk.com.br
+```
 
-Antes de alterar funcionalidades importantes, consultar os documentos relacionados.
+Rotas sob sua responsabilidade:
+
+```text
+/
+ /blacknovember
+```
+
+Também participa do encaminhamento da rota:
+
+```text
+/blacknovember/superaulas
+```
+
+### Arquivo de roteamento
+
+```text
+vercel.json
+```
+
+As regras de redirect e rewrite devem ser preservadas e revisadas antes de qualquer alteração.
+
+**Atenção:** modificar o `vercel.json` pode afetar o site principal, a campanha e a integração com Super Aulas.
+
+### Regras para publicação
+
+1. Conferir a branch de produção.
+2. Revisar o Pull Request.
+3. Validar os testes.
+4. Fazer merge na branch principal.
+5. Aguardar o deploy da Vercel.
+6. Confirmar o status Ready.
+7. Testar as rotas oficiais.
 
 ---
 
-## 12. Git e Pull Requests
+## 10. Integração com Super Aulas
 
-Repositório oficial:
+A rota oficial:
 
-https://github.com/WemersonOliveira/woatalk-superaulas
+```text
+https://www.woatalk.com.br/blacknovember/superaulas
+```
 
-Branch principal:
+É encaminhada para a aplicação independente:
+
+```text
+https://woatalk-superaulas.vercel.app/BlackNovember/superaulas
+```
+
+O projeto independente utiliza o prefixo de rota configurado no próprio repositório.
+
+### Atenção ao carregamento dos assets
+
+A integração entre dois projetos pode apresentar problemas de carregamento de:
+
+- CSS.
+- JavaScript.
+- Imagens.
+- Fontes.
+- Outros arquivos estáticos.
+
+O HTML carregar não significa que a integração esteja completamente funcional.
+
+É necessário validar o layout e os recursos estáticos pela URL oficial.
+
+### Responsabilidades
+
+| Problema | Onde investigar |
+|---|---|
+| Rewrite não encaminha a rota | `vercel.json` deste repositório |
+| Página principal apresenta erro | Este repositório |
+| Black November apresenta erro | Este repositório |
+| Layout das Super Aulas | Repositório `woatalk-superaulas` |
+| `basePath` incorreto | Repositório `woatalk-superaulas` |
+| CSS e JS das Super Aulas | Repositório `woatalk-superaulas` |
+| Assets não carregam pelo domínio oficial | Investigar a integração dos dois projetos |
+
+### Estado técnico registrado
+
+O encaminhamento da rota oficial foi ajustado por meio de `rewrites`.
+
+O erro 404 foi resolvido, mas foi identificado um problema de carregamento dos arquivos de estilo e scripts na rota oficial.
+
+Portanto, a integração ainda precisa de validação visual completa.
+
+---
+
+## 11. Testes e validação
+
+Comandos documentados:
+
+```bash
+npm test
+npm run build
+```
+
+Os testes existentes incluem verificações de fluxo de cadastro e build.
+
+A documentação anterior informa que os testes de captura podem utilizar respostas simuladas, sem necessariamente validar uma conexão real com o Supabase.
+
+Por isso, antes da publicação, também é necessário validar a integração real em ambiente apropriado.
+
+### Checklist
+
+- [ ] Instalação de dependências concluída.
+- [ ] Build concluído sem erros.
+- [ ] Testes concluídos.
+- [ ] Variáveis de ambiente configuradas.
+- [ ] Migração Supabase aplicada.
+- [ ] Formulário testado.
+- [ ] Cadastro validado no banco.
+- [ ] Consentimento validado.
+- [ ] Links externos conferidos.
+- [ ] Deploy Ready na Vercel.
+- [ ] Domínio oficial testado.
+
+---
+
+## 12. Git — Branches e Pull Requests
+
+A branch principal identificada nas capturas é:
 
 ```text
 main
@@ -492,123 +415,77 @@ git push -u origin feature/nome-da-alteracao
 
 Depois:
 
-1. Abrir um Pull Request.
+1. Abrir Pull Request.
 2. Revisar os arquivos modificados.
-3. Validar os checks.
-4. Aprovar e integrar na `main`.
-5. Confirmar o deploy do projeto `woatalk-superaulas`.
+3. Verificar os checks.
+4. Aprovar e integrar.
+5. Confirmar o deploy na Vercel.
 
-### Regra
-
-Código em uma branch ou Pull Request não deve ser considerado publicado em produção até que o merge e o deploy estejam confirmados.
+Não considerar uma alteração publicada apenas porque foi enviada para uma branch.
 
 ---
 
-## 13. Testes
+## 13. Git e backup
 
-O projeto utiliza testes com Node.js, TypeScript, renderização React e integração em JSDOM.
+O GitHub é o repositório oficial do código-fonte.
 
-As validações incluem:
+Recomendações:
 
-- Conteúdo e preços.
-- Links independentes.
-- Segurança das URLs.
-- Carregamento de vídeo após clique.
-- PDFs independentes.
-- Checkout de cada plano.
-- Contato e Pix.
-- Fórmulas e datas em Brasília.
-- Virada de lote com a página aberta.
-- Prefixo de rota.
+- Versionar código e arquivos de configuração não secretos.
+- Manter `package-lock.json` atualizado.
+- Não versionar `.env.local`.
+- Não versionar chaves ou credenciais.
+- Manter migrações SQL no histórico Git.
+- Revisar alterações antes de cada merge.
+- Preservar o histórico de commits.
 
-### Limitação dos testes
-
-Os testes em JSDOM não substituem a validação em navegador real.
-
-É necessário verificar manualmente:
-
-- Layout e responsividade.
-- Contraste.
-- Navegação por teclado.
-- Carregamento dos assets.
-- Reprodução efetiva do YouTube.
-- Integração externa de pagamento.
-- Comportamento pelo domínio oficial.
+O histórico Git não substitui o backup do banco de dados Supabase.
 
 ---
 
-## 14. Pendências antes da publicação completa
+## 14. Segurança e cuidados
 
-1. Receber os vídeos das aulas 02 a 04. O quinto? A referência atual indica que a Aula 01 possui vídeo integrado.
-2. Conferir no Asaas os destinos, preços, parcelamento e validade dos links antes da publicação. Nenhuma transação foi realizada nesta revisão.
-3. Validar visualmente desktop e mobile com as artes reais, navegação por teclado e contraste; testar integrações oficiais parte a parte.
-4. Aprovar a integração de hospedagem separadamente. Remover robots, exclusões e faixas de prévia somente após aprovação.
-
-### Pendência adicional da integração oficial
-
-- [ ] Corrigir o carregamento de CSS e JavaScript na rota oficial.
-- [ ] Validar imagens, fontes e arquivos estáticos.
-- [ ] Conferir a compatibilidade do `basePath` com o rewrite.
-- [ ] Comparar o resultado visual na URL independente e na URL oficial.
-- [ ] Confirmar que o projeto principal continua funcionando.
-- [ ] Validar o deploy dos dois projetos após a correção.
+- Nunca publicar segredos no GitHub.
+- Não expor chaves administrativas no frontend.
+- Não remover políticas RLS sem análise.
+- Não alterar migrações já aplicadas sem avaliar o impacto.
+- Não substituir configurações de produção por valores locais.
+- Não modificar regras de domínio sem validar as rotas dependentes.
+- Não confundir variáveis de ambiente dos dois projetos.
 
 ---
 
-## 15. Regras para evitar confusão e retrabalho
-
-1. O código das Super Aulas pertence exclusivamente a este repositório.
-2. O projeto Vercel correspondente é `woatalk-superaulas`.
-3. O site principal e Black November pertencem a `woatalk-lancamentos`.
-4. O encaminhamento do domínio oficial é configurado no projeto de Lançamentos.
-5. As variáveis de ambiente dos projetos são independentes.
-6. Não alterar `basePath` sem verificar rotas e assets.
-7. Não modificar `vercel.json` neste repositório se a configuração de encaminhamento pertence ao projeto principal.
-8. Não considerar um deploy Ready como prova de que a integração pelo domínio oficial está visualmente correta.
-9. Sempre validar a aplicação independente e a rota oficial após alterações.
-
----
-
-## 16. Links de referência
-
-### Super Aulas
-
-- GitHub: https://github.com/WemersonOliveira/woatalk-superaulas
-- Projeto Vercel: `woatalk-superaulas`
-- URL independente: https://woatalk-superaulas.vercel.app/BlackNovember/superaulas
-- URL oficial: https://www.woatalk.com.br/blacknovember/superaulas
+## 15. Links oficiais de referência
 
 ### Projeto Lançamentos
 
+- Vercel: https://vercel.com/
 - GitHub: https://github.com/WemersonOliveira/-woatalk-lancamentos
-- Projeto Vercel: `woatalk-lancamentos`
 - Site: https://www.woatalk.com.br
 - Black November: https://www.woatalk.com.br/blacknovember
 
----
+### Projeto Super Aulas
 
-## Resumo operacional
-
-| Pergunta | Resposta |
-|---|---|
-| Onde alterar o layout das Super Aulas? | Neste repositório |
-| Onde alterar os vídeos e materiais? | Neste repositório |
-| Onde alterar preços e conteúdo das Super Aulas? | Neste repositório |
-| Onde configurar o Supabase desta aplicação? | Neste repositório e no projeto Vercel correspondente |
-| Qual projeto Vercel publica as Super Aulas? | `woatalk-superaulas` |
-| Onde corrigir o rewrite do domínio oficial? | Projeto `woatalk-lancamentos` |
-| Onde corrigir o CSS/JS da própria aplicação? | Começar por este repositório |
-| Os projetos compartilham o mesmo Git? | Não |
-
-**Princípio operacional: este repositório controla a aplicação Super Aulas. O projeto Lançamentos controla o domínio principal e o encaminhamento de acesso. Cada um deve ser atualizado e validado separadamente.**
-
+- GitHub: https://github.com/WemersonOliveira/woatalk-superaulas
+- Vercel: `woatalk-superaulas`
+- URL oficial: https://www.woatalk.com.br/blacknovember/superaulas
 
 ---
 
-## 17. Revisão adicional — 17/11/2026
+## 16. Regras finais para manutenção
 
-O CSS do formulário desta aplicação foi reforçado para impedir que inputs e botões ultrapassem a largura do contêiner em telas estreitas. Os checkouts externos abrem em nova aba. Foi incluído um teste de regressão para o botão do plano de 3 meses / lote 3 durante a vigência.
+1. Este repositório é responsável pelo site principal e Black November.
+2. O repositório `woatalk-superaulas` é responsável pela aplicação Super Aulas.
+3. Cada repositório possui seu próprio projeto Vercel.
+4. Cada projeto possui suas próprias variáveis de ambiente.
+5. O domínio oficial conecta as duas aplicações por meio de roteamento.
+6. Alterações devem ser feitas no repositório responsável pela funcionalidade.
+7. Todo deploy deve ser validado na URL oficial.
+8. O carregamento visual completo deve ser testado, não apenas a resposta HTML.
 
-**Atenção ao Asaas:** o checkout cadastrado para 3 meses / lote 3 já havia retornado HTTP 500 em verificações anteriores. O botão pode estar habilitado e apontar para o endereço registrado, mas a disponibilidade do checkout depende do Asaas. Substitua `integrations.checkout["3-meses-lote-3"]` por um link válido confirmado no painel Asaas antes de anunciar esse pagamento.
+**Princípio operacional: antes de alterar qualquer arquivo, identifique a aplicação responsável, o repositório correto e o projeto Vercel correspondente.**
 
-Este repositório não contém a landing page principal `/blacknovember` nem os retângulos de conteúdo da seção “Seu primeiro passo” e “O próximo nível”. Essas alterações pertencem ao repositório/projeto `-woatalk-lancamentos`.
+
+## Superaulas integradas
+
+A aplicação WOA Exclusive — Superaulas está incorporada no mesmo projeto Next.js em `/blacknovember/superaulas`. Consulte `INTEGRACAO-SUPERAULAS.md` para rotas, variáveis de ambiente e publicação. O antigo deploy externo não é mais necessário.
