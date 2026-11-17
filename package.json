@@ -1,31 +1,30 @@
 {
-  "name": "woa-black-november",
+  "name": "woa-exclusive-superaulas",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
-    "start": "next start",
-    "check": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "prebuild": "node scripts/prepare-blacknovember-assets.mjs",
-    "predev": "node scripts/prepare-blacknovember-assets.mjs"
+    "start": "next start --hostname 0.0.0.0",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "tsx --test tests/*.test.tsx"
   },
   "dependencies": {
-    "next": "16.4.3",
-    "react": "19.3.1",
-    "react-dom": "19.3.1",
-    "lucide-react": "0.468.0",
-    "@fontsource/barlow": "5.3.0",
-    "@fontsource/barlow-condensed": "5.3.0"
+    "@fontsource/barlow": "^5.2.0",
+    "@fontsource/barlow-condensed": "^5.2.0",
+    "lucide-react": "^0.468.0",
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
-    "@types/node": "22.20.5",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0"
-  },
-  "engines": {
-    "node": ">=22.18.0"
+    "@testing-library/react": "^16.3.0",
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "jsdom": "^27.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
   }
 }
