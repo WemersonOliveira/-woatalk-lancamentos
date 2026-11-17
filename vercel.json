@@ -1,10 +1,13 @@
-"rewrites": [
-  {
-    "source": "/blacknovember/superaulas",
-    "destination": "https://woatalk-superaulas.vercel.app/"
-  },
-  {
-    "source": "/blacknovember/superaulas/:path*",
-    "destination": "https://woatalk-superaulas.vercel.app/:path*"
-  }
-]
+
+{
+  "rewrites": [
+    {
+      "source": "/blacknovember/superaulas",
+      "destination": "https://woatalk-superaulas.vercel.app/"
+    },
+    {
+      "source": "/blacknovember/superaulas/:path*",
+      "destination": "https://woatalk-superaulas.vercel.app/:path*"
+    }
+  ]
+}
