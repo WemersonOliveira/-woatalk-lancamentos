@@ -1,26 +1,10 @@
-
-{
-  "framework": "nextjs",
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/blacknovember",
-      "permanent": false
-    },
-    {
-      "source": "/BlackNovember/:path*",
-      "destination": "/blacknovember/:path*",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/blacknovember/superaulas",
-      "destination": "https://woatalk-superaulas.vercel.app/blacknovember/superaulas"
-    },
-    {
-      "source": "/blacknovember/superaulas/:path*",
-      "destination": "https://woatalk-superaulas.vercel.app/blacknovember/superaulas/:path*"
-    }
-  ]
-}
+"rewrites": [
+  {
+    "source": "/blacknovember/superaulas",
+    "destination": "https://woatalk-superaulas.vercel.app/"
+  },
+  {
+    "source": "/blacknovember/superaulas/:path*",
+    "destination": "https://woatalk-superaulas.vercel.app/:path*"
+  }
+]
