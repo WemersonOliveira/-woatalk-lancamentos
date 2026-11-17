@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Download, Play, ArrowUpRight } from "lucide-react";
-import { assetPath, pdfPath, type Lesson } from "@/app/blacknovember/superaulas/_lib/campaign";
+import { assetPath, pdfPath, type Lesson } from "@/src/app/blacknovember/superaulas/_lib/campaign";
 export function LessonCard({ lesson }: { lesson: Lesson }) {
   const [playing, setPlaying] = useState(false);
   const videoId =

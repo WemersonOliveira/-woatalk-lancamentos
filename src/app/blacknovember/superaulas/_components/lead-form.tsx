@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight, CheckCircle2, LoaderCircle } from "lucide-react";
-import { assetPath } from "@/app/blacknovember/superaulas/_lib/campaign";
+import { assetPath } from "@/src/app/blacknovember/superaulas/_lib/campaign";
 export function LeadForm({ available }: { available: boolean }) {
   const [state, setState] = useState<"idle" | "sending" | "success" | "error">(
     "idle",

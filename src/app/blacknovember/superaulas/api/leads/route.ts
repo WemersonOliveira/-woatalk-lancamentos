@@ -1,4 +1,4 @@
-import { validateLead } from "@/app/blacknovember/superaulas/_lib/leads/validation";
+import { validateLead } from "@/src/app/blacknovember/superaulas/_lib/leads/validation";
 
 export const runtime = "nodejs";
 

@@ -1,4 +1,4 @@
-import { assetPath } from "@/app/blacknovember/superaulas/_lib/campaign";
+import { assetPath } from "@/src/app/blacknovember/superaulas/_lib/campaign";
 
 export const metadata = { title: "Privacidade | WOA Talk" };
 

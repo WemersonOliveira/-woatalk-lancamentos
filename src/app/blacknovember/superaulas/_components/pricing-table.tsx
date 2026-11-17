@@ -1,5 +1,5 @@
 "use client";
-import { useCampaignDate } from "@/app/blacknovember/superaulas/_lib/use-campaign-date";
+import { useCampaignDate } from "@/src/app/blacknovember/superaulas/_lib/use-campaign-date";
 import { Award, CalendarDays, ArrowUpRight } from "lucide-react";
 import {
   lots,
@@ -9,7 +9,7 @@ import {
   safeHttps,
   lotStatus,
   campaignDate,
-} from "@/app/blacknovember/superaulas/_lib/campaign";
+} from "@/src/app/blacknovember/superaulas/_lib/campaign";
 export function PricingTable({ initialDate }: { initialDate?: string } = {}) {
   const date = useCampaignDate(initialDate);
   return (

@@ -3,7 +3,7 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { assetPath } from "@/app/blacknovember/superaulas/_lib/campaign";
+import { assetPath } from "@/src/app/blacknovember/superaulas/_lib/campaign";
 
 type ConsentChoice = "accepted" | "rejected" | null;
 

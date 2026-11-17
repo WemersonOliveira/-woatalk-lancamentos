@@ -6,8 +6,8 @@ import {
   safeHttps,
   currentLot,
   campaignDate,
-} from "@/app/blacknovember/superaulas/_lib/campaign";
-import { useCampaignDate } from "@/app/blacknovember/superaulas/_lib/use-campaign-date";
+} from "@/src/app/blacknovember/superaulas/_lib/campaign";
+import { useCampaignDate } from "@/src/app/blacknovember/superaulas/_lib/use-campaign-date";
 export function Enrollment({ initialDate }: { initialDate?: string } = {}) {
   const date = useCampaignDate(initialDate);
   const active = currentLot(date);

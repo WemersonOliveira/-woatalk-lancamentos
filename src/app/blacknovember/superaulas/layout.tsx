@@ -6,7 +6,7 @@ import "@fontsource/barlow/latin-700.css";
 import "@fontsource/barlow/latin-800.css";
 import "@fontsource/barlow-condensed/latin-700.css";
 import "./superaulas.css";
-import { PrivacyConsent } from "@/app/blacknovember/superaulas/_components/privacy-consent";
+import { PrivacyConsent } from "@/src/app/blacknovember/superaulas/_components/privacy-consent";
 
 export const metadata: Metadata = {
   title: "WOA Exclusive | Black November 2026 — 4 Superaulas",

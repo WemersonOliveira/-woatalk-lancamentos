@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { BrandLogo } from "@/app/blacknovember/superaulas/_components/brand-logo";
+import { BrandLogo } from "@/src/app/blacknovember/superaulas/_components/brand-logo";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -12,17 +12,17 @@ import {
   Sparkles,
   Orbit,
 } from "lucide-react";
-import { LessonCard } from "@/app/blacknovember/superaulas/_components/lesson-card";
-import { SectionHeading } from "@/app/blacknovember/superaulas/_components/section-heading";
-import { PricingTable } from "@/app/blacknovember/superaulas/_components/pricing-table";
-import { Enrollment } from "@/app/blacknovember/superaulas/_components/enrollment";
+import { LessonCard } from "@/src/app/blacknovember/superaulas/_components/lesson-card";
+import { SectionHeading } from "@/src/app/blacknovember/superaulas/_components/section-heading";
+import { PricingTable } from "@/src/app/blacknovember/superaulas/_components/pricing-table";
+import { Enrollment } from "@/src/app/blacknovember/superaulas/_components/enrollment";
 import {
   lessons,
   benefits,
   languages,
   integrations,
   assetPath,
-} from "@/app/blacknovember/superaulas/_lib/campaign";
+} from "@/src/app/blacknovember/superaulas/_lib/campaign";
 
 const icons = [
   MessageSquare,
