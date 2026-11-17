@@ -6,6 +6,11 @@
       "source": "/",
       "destination": "/blacknovember",
       "permanent": false
+    },
+    {
+      "source": "/BlackNovember/:path*",
+      "destination": "/blacknovember/:path*",
+      "permanent": false
     }
   ],
   "rewrites": [
