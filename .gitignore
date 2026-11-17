@@ -10,5 +10,5 @@ out/
 Thumbs.db
 
 
-# Assets da campanha gerados a partir dos arquivos originais
-/public/blacknovember/
+# Assets públicos da campanha e das Superaulas são versionados,
+# pois precisam estar presentes no deploy da Vercel.

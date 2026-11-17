@@ -102,7 +102,7 @@ export const integrations = {
   checkout: {
     "3-meses-lote-1": "https://www.asaas.com/000/c/9eg0onuzb6usegto",
     "3-meses-lote-2": "https://www.asaas.com/000/c/jrfcw4vkwv3hey3m",
-    "3-meses-lote-3": "https://www.asaas.com/000/c/ox79a8c925o17s7tv",
+    "3-meses-lote-3": null, // Checkout retornou HTTP 500 na revisão original; aguarda URL corrigida no Asaas.
     "3-meses-lote-4": "https://www.asaas.com/000/c/v3jugdwrjh7gmgky",
     "6-meses-lote-1": "https://www.asaas.com/000/c/93rtufqntbidpmzc",
     "6-meses-lote-2": "https://www.asaas.com/000/c/b65cirbkhghhptgq",
@@ -112,7 +112,7 @@ export const integrations = {
     "1-ano-lote-2": "https://www.asaas.com/000/c/042pwkw5fmbr0ykz",
     "1-ano-lote-3": "https://www.asaas.com/000/c/o5ejwsdqnni48pwh",
     "1-ano-lote-4": "https://www.asaas.com/000/c/305oza8z8wbti6yg",
-  } as Record<string, string>,
+  } as Record<string, string | null>,
   whatsapp: "556181176884" as string | null,
   pixUrl: "https://www.asaas.com/000/c/zdi9uwkmtojxpfeb" as string | null,
   assets: {
@@ -154,12 +154,19 @@ export const currency = (value: number) =>
  * /materials/aula-1.pdf
  * -> /blacknovember/superaulas/materials/aula-1.pdf
  */
-export function assetPath(path: string) {
-  const basePath =
-    process.env.NEXT_PUBLIC_BASE_PATH ??
-    "/blacknovember/superaulas";
+const SUPER_AULAS_ASSET_PREFIX = "/blacknovember/superaulas";
 
-  return `${basePath}${path}`;
+/**
+ * Caminho público fixo da aplicação integrada.
+ * Não depende de NEXT_PUBLIC_BASE_PATH, que pode conter o valor legado
+ * da aplicação independente e gerar URLs de assets incorretas.
+ */
+export function assetPath(path: string) {
+  if (!path.startsWith("/") || path.startsWith("//") || path.split("/").includes("..")) {
+    throw new Error("Caminho de asset inválido.");
+  }
+
+  return `${SUPER_AULAS_ASSET_PREFIX}${path}`;
 }
 
 export function safeHttps(

@@ -80,6 +80,8 @@ export function PricingTable({ initialDate }: { initialDate?: string } = {}) {
                         <a
                           className="payment-button"
                           href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           onClick={(event) => {
                             if (
                               lotStatus(

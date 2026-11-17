@@ -24,9 +24,6 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@/app/*": [
-        "./src/app/*"
-      ],
       "@/*": [
         "./*"
       ]
