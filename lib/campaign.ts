@@ -37,7 +37,7 @@ export const lessons: Lesson[] = [
     description: "Descreva sua cidade, clima e rotina.",
     theme: "galaxy",
     topic: "GALÁXIAS",
-    youtubeId: null,
+    youtubeId: qbGG8bF1D44,
     pdf: "/materials/aula-3.pdf",
     image: "/images/galaxy.webp",
   },
