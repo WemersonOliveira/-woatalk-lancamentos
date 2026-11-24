@@ -1,5 +1,5 @@
+
 const nextConfig = {
-  basePath: "/blacknovember/superaulas",
   poweredByHeader: false,
 };
 
